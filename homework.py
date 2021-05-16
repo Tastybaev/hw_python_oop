@@ -16,18 +16,12 @@ class Record:
 class Calculator:
     def add_record(self, record: Record):
         self.records.append(record)
-
-
     def __init__(self, limit):
         self.limit = limit
-        self.records= []
-
-
+        self.records = []
     def get_today_stats(self):
         return sum(i.amount for i in self.records \
             if i.date == dt.datetime.today().date())
-
-
     def get_week_stats(self):
         day_week_ago = dt.datetime.today().date() - dt.timedelta(days=7)
         return sum(i.amount for i in self.records if i.date >= day_week_ago)
@@ -56,8 +50,6 @@ class CashCalculator(Calculator):
         'usd': 'USD',
         'eur': 'Euro',
     }
-
-
     def get_today_cash_remained(self, currency):
         cur = currency.lower()
         cur_name = CashCalculator.CURRENCY_NAME[cur]
@@ -93,4 +85,4 @@ cash_calculator.add_record(Record(amount=3000,
 print(cash_calculator.get_today_cash_remained('rub'))
 # должно напечататься
 # На сегодня осталось 555 руб 
- 
+
