@@ -3,8 +3,8 @@ from typing import Optional
 
 
 class Record:
-    def __init__(self, amount: float, comment: str, 
-date: Optional[str] = None) -> None:
+    def __init__(self, amount: float, comment: str,
+       date: Optional[str] = None) -> None:
         self.amount = amount
         self.comment = comment
         if date is None:
@@ -16,15 +16,15 @@ date: Optional[str] = None) -> None:
 class Calculator:
     def add_record(self, record: Record):
         self.records.append(record)
-    
+
     def __init__(self, limit):
         self.limit = limit
         self.records = []
-    
+
     def get_today_stats(self):
-        return sum(i.amount for i in self.records 
-            if i.date == dt.datetime.today().date())
-    
+        return sum(i.amount for i in self.records
+               if i.date == dt.datetime.today().date())
+
     def get_week_stats(self):
         day_week_ago = dt.datetime.today().date() - dt.timedelta(days=7)
         return sum(i.amount for i in self.records if i.date >= day_week_ago)
@@ -53,7 +53,7 @@ class CashCalculator(Calculator):
         'usd': 'USD',
         'eur': 'Euro',
     }
-    
+
     def get_today_cash_remained(self, currency):
         cur = currency.lower()
         cur_name = CashCalculator.CURRENCY_NAME[cur]
