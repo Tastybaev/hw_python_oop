@@ -4,7 +4,7 @@ from typing import Optional
 
 class Record:
     def __init__(self, amount: float, comment: str,
-       date: Optional[str] = None) -> None:
+                date: Optional[str] = None) -> None:
         self.amount = amount
         self.comment = comment
         if date is None:
@@ -23,7 +23,7 @@ class Calculator:
 
     def get_today_stats(self):
         return sum(i.amount for i in self.records
-               if i.date == dt.datetime.today().date())
+                   if i.date == dt.datetime.today().date())
 
     def get_week_stats(self):
         day_week_ago = dt.datetime.today().date() - dt.timedelta(days=7)
