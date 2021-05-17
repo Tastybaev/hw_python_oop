@@ -54,19 +54,24 @@ class CashCalculator(Calculator):
             debt = self.get_today_stats() - self.limit
         elif currency.lower() == 'usd':
             money_type = 'USD'
-            cash_remained = (self.limit - self.get_today_stats()) / self.USD_RATE
-            debt = abs(round((self.get_today_stats() - self.limit) / self.USD_RATE, 2))
+            cash_remained = (self.limit - self.get_today_stats()) \
+                             / self.USD_RATE
+            debt = abs(round((self.get_today_stats() - self.limit) \
+                              / self.USD_RATE, 2))
         elif currency.lower() == 'eur':
             money_type = 'Euro'
-            cash_remained = (self.limit - self.get_today_stats()) / self.EURO_RATE
-            debt = abs(round((self.get_today_stats() - self.limit) / self.EURO_RATE, 2))
-  
+            cash_remained = (self.limit - self.get_today_stats()) \
+                             / self.EURO_RATE
+            debt = abs(round((self.get_today_stats() - self.limit) \
+                              / self.EURO_RATE, 2))
+
         if self.get_today_stats() < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
         elif self.get_today_stats() == self.limit:
             return 'Денег нет, держись'
         else:
             return f'Денег нет, держись: твой долг - {debt} {money_type}'
+
 
 # создадим калькулятор денег с дневным лимитом 1000
 cash_calculator = CashCalculator(1000)
