@@ -4,7 +4,7 @@ from typing import Optional
 
 class Record:
     def __init__(self, amount: float, comment: str,
-                date: Optional[str] = None) -> None:
+                 date: Optional[str] = None) -> None:
         self.amount = amount
         self.comment = comment
         if date is None:
