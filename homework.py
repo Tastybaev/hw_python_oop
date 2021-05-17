@@ -55,15 +55,15 @@ class CashCalculator(Calculator):
         elif currency.lower() == 'usd':
             money_type = 'USD'
             cash_remained = (self.limit - self.get_today_stats()) \
-                            / self.USD_RATE
-            debt = abs(round((self.get_today_stats() - self.limit) 
-                            / self.USD_RATE, 2))
+                           / self.USD_RATE
+            debt = abs(round((self.get_today_stats() - self.limit)
+                           / self.USD_RATE, 2))
         elif currency.lower() == 'eur':
             money_type = 'Euro'
             cash_remained = (self.limit - self.get_today_stats()) \
-                            / self.EURO_RATE
-            debt = abs(round((self.get_today_stats() - self.limit) 
-                            / self.EURO_RATE, 2))
+                           / self.EURO_RATE
+            debt = abs(round((self.get_today_stats() - self.limit)
+                           / self.EURO_RATE, 2))
 
         if self.get_today_stats() < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
