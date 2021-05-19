@@ -32,7 +32,7 @@ class Calculator:
 
 
 class CaloriesCalculator(Calculator):
-    def get_calories_remained(self, limit: Calculator):
+    def get_calories_remained(self, limit):
         calories_limit = self.get_today_stats()
         if calories_limit <= limit:
             over_limit = limit - calories_limit
@@ -65,7 +65,8 @@ class CashCalculator(Calculator):
                 / self.EURO_RATE
             debt = abs(round((self.get_today_stats() - self.limit)
                              / self.EURO_RATE, 2))
-
+        if self.get_today_stats() == 0:
+            return 'Денег нет, держись'
         if self.get_today_stats() < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
         elif self.get_today_stats() == self.limit:
