@@ -29,7 +29,8 @@ class Calculator:
         today = dt.date.today().date()
         tomorrow = today + dt.timedelta(days=1)
         week_ago = today - dt.timedelta(days=7)
-        return sum(i.amount for i in self.records if i.date >= week_ago and i.date < tomorrow)
+        return sum(i.amount for i in self.records if i.date >= 
+                   week_ago and i.date < tomorrow)
 
 
 class CaloriesCalculator(Calculator):
