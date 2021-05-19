@@ -26,8 +26,9 @@ class Calculator:
                    if i.date == dt.datetime.today().date())
 
     def get_week_stats(self):
-        day_week_ago = dt.datetime.today().date() - dt.timedelta(days=7)
-        return sum(i.amount for i in self.records if i.date >= day_week_ago)
+        today = dt.date.today()
+        week_ago = today - dt.timedelta(days=7)
+        return sum(i.amount for i in self.records if i.date >= week_ago)
 
 
 class CaloriesCalculator(Calculator):
