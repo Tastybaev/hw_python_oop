@@ -16,15 +16,15 @@ class Record:
 class Calculator:
     def add_record(self, record: Record):
         self.records.append(record)
-   
+
     def __init__(self, limit):
         self.limit = limit
         self.records = []
-  
+
     def get_today_stats(self):
         return sum(i.amount for i in self.records
                    if i.date == dt.date.today())
-  
+
     def get_week_stats(self):
         today = dt.date.today().date()
         tomorrow = today + dt.timedelta(days=1)
