@@ -10,7 +10,7 @@ class Record:
         if date is None:
             self.date = dt.date.today()
         else:
-            self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
+            self.date = dt.datetime.strptime(date, '%d.%m.%Y')
 
 
 class Calculator:
@@ -26,7 +26,7 @@ class Calculator:
                    if i.date == dt.date.today())
 
     def get_week_stats(self):
-        today = dt.date.today().date()
+        today = dt.date.today()
         tomorrow = today + dt.timedelta(days=1)
         week_ago = today - dt.timedelta(days=7)
         return sum(i.amount for i in self.records if i.date >= week_ago
