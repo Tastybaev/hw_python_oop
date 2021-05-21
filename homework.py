@@ -26,7 +26,7 @@ class Calculator:
                    if i.date == dt.date.today())
 
     def get_week_stats(self):
-        today = dt.date.today().date()
+        today = dt.date.today()
         tomorrow = today + dt.timedelta(days=1)
         week_ago = today - dt.timedelta(days=7)
         return sum(i.amount for i in self.records if i.date >= week_ago
@@ -66,9 +66,9 @@ class CashCalculator(Calculator):
         if rate != 1.0:
             cash_remained = round(cash_remained / rate, 2)
 
-        if self.get_today_stats() < self.limit:
+        if self.get_today_stats() < round(self.limit):
             return f'На сегодня осталось {cash_remained} {cur_name}'
-        elif self.get_today_stats() == self.limit:
+        elif self.get_today_stats() == round(self.limit):
             return 'Денег нет, держись'
         else:
             debt = abs(round((self.get_today_stats() - self.limit) / rate, 2))
