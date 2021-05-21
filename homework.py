@@ -57,14 +57,14 @@ class CashCalculator(Calculator):
             debt = self.get_today_stats() - self.limit
         elif currency.lower() == 'usd':
             money_type = 'USD'
-            cash_remained = round((self.limit - self.get_today_stats()) \
-                / self.USD_RATE)
+            cash_remained = round((self.limit - self.get_today_stats())
+                                  / self.USD_RATE)
             debt = abs(round((self.get_today_stats() - self.limit)
                              / self.USD_RATE, 2))
         elif currency.lower() == 'eur':
             money_type = 'Euro'
-            cash_remained = round((self.limit - self.get_today_stats()) \
-                / self.EURO_RATE)
+            cash_remained = round((self.limit - self.get_today_stats())
+                                  / self.EURO_RATE)
             debt = abs(round((self.get_today_stats() - self.limit)
                              / self.EURO_RATE, 2))
         if self.get_today_stats() == 0:
