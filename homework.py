@@ -10,7 +10,7 @@ class Record:
         if date is None:
             self.date = dt.date.today()
         else:
-            self.date = dt.datetime.strptime(date, '%d.%m.%Y')
+            self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
 
 
 class Calculator:
