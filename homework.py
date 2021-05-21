@@ -75,7 +75,6 @@ class CashCalculator(Calculator):
             return f'Денег нет, держись: твой долг - {debt} {cur_name}'
 
 
-
 # создадим калькулятор денег с дневным лимитом 1000
 cash_calculator = CashCalculator(1000)
 # дата в параметрах не указана,
