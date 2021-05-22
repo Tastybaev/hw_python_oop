@@ -10,7 +10,7 @@ class Record:
         if date is None:
             self.date = dt.date.today()
         else:
-            self.date = dt.datetime.strptime(date, '%d.%m.%Y')
+            self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
 
 
 class Calculator:
@@ -22,15 +22,13 @@ class Calculator:
         self.records = []
 
     def get_today_stats(self):
-        today = dt.date.today()
         return sum(i.amount for i in self.records
-                   if i.date == today)
+                   if i.date == dt.date.today())
 
     def get_week_stats(self):
-        tomorrow = self.get_today_stats() + dt.timedelta(days=1)
-        week_ago = self.get_today_stats() - dt.timedelta(days=7)
-        return sum(i.amount for i in self.records if i.date >= week_ago
-                   and i.date <= tomorrow)
+        today = dt.date.today()
+        week_ago = today - dt.timedelta(days=7)
+        return week_ago
 
 
 class CaloriesCalculator(Calculator):
@@ -45,8 +43,8 @@ class CaloriesCalculator(Calculator):
 
 
 class CashCalculator(Calculator):
-    USD_RATE = float(73.99)
-    EURO_RATE = float(89.67)
+    USD_RATE = 73.99
+    EURO_RATE = 89.67
 
     def get_today_cash_remained(self, currency):
         self.currency = currency
