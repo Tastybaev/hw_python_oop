@@ -22,15 +22,15 @@ class Calculator:
         self.records = []
 
     def get_today_stats(self):
+        today = dt.date.today()
         return sum(i.amount for i in self.records
-                   if i.date == dt.date.today())
+                   if i.date == today)
 
     def get_week_stats(self):
-        today = dt.date.today().date()
-        tomorrow = today + dt.timedelta(days=1)
-        week_ago = today - dt.timedelta(days=7)
+        tomorrow = dt.date.today() + dt.timedelta(days=1)
+        week_ago = dt.date.today() - dt.timedelta(days=7)
         return sum(i.amount for i in self.records if i.date >= week_ago
-                   and i.date < tomorrow)
+                   and i.date <= tomorrow)
 
 
 class CaloriesCalculator(Calculator):
