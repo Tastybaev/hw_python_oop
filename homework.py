@@ -35,7 +35,7 @@ class Calculator:
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self, limit: float):
-        limit =1000
+        limit = 1000
         calories_limit = self.get_today_stats()
         if calories_limit <= limit:
             over_limit = limit - calories_limit
