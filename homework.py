@@ -35,7 +35,7 @@ class Calculator:
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self, limit):
-        calories_limit = self.get_today_stats()
+        calories_limit = self.get_today_stats() + limit
         if calories_limit <= limit:
             over_limit = limit - calories_limit
             return f'Сегодня можно съесть что-нибудь ещё, \
