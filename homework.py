@@ -27,17 +27,15 @@ class Calculator:
 
     def get_week_stats(self):
         today = dt.date.today()
-        tomorrow = today + dt.timedelta(days=1)
         week_ago = today - dt.timedelta(days=7)
-        return sum(i.amount for i in self.records if i.date >= week_ago
-                   and i.date <= tomorrow)
+        return sum(i.amount for i in self.records if i.date >= week_ago)
 
 
 class CaloriesCalculator(Calculator):
-    def get_calories_remained(self, limit: float):
-        calories_limit = round(self.get_today_stats())
-        if calories_limit <= round(limit):
-            over_limit = round(limit - calories_limit)
+    def get_calories_remained(self, limit):
+        calories_limit = self.get_today_stats()
+        if calories_limit <= limit:
+            over_limit = limit - calories_limit
             return f'Сегодня можно съесть что-нибудь ещё, \
                 но с общей калорийностью не более {over_limit} кКал'
         else:
