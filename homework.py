@@ -71,8 +71,8 @@ class CashCalculator(Calculator):
         elif round(self.get_today_stats(), 2) == self.limit:
             return 'Денег нет, держись'
         else:
-            debt = abs(round((self.get_today_stats(), 2) - self.limit)
-                            / round(rate, 2))
+            debt = abs(round((self.get_today_stats(), 2)) - self.limit
+                            / abs(round(rate, 2)))
             return f'Денег нет, держись: твой долг - {debt} {cur_name}'
 
 
@@ -95,4 +95,4 @@ caloriescalculator = CaloriesCalculator(1000)
 caloriescalculator.add_record(Record(amount=1186,
             comment='Кусок тортика. И ещё один.',
             date='24.02.2019'))
-print(caloriescalculator.get_calories_remained(200))
+print(caloriescalculator.get_calories_remained(9))
