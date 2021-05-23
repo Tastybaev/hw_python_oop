@@ -66,9 +66,9 @@ class CashCalculator(Calculator):
         if rate != 1.0:
             cash_remained = round(cash_remained / rate, 2)
 
-        if self.get_today_stats() < self.limit:
+        if round(self.get_today_stats(), 2) < self.limit:
             return f'На сегодня осталось {cash_remained} {cur_name}'
-        elif self.get_today_stats() == self.limit:
+        elif round(self.get_today_stats(), 2) == self.limit:
             return 'Денег нет, держись'
         else:
             debt = abs(round((self.get_today_stats() - self.limit) / rate, 2))
