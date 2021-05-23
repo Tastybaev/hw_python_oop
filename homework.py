@@ -62,7 +62,7 @@ class CashCalculator(Calculator):
         cur_name = CashCalculator.CURRENCY_NAME[cur]
         rate = CashCalculator.EXCHANGE_RATE[cur]
 
-        cash_remained = round(self.limit - self.get_today_stats(), 2)
+        cash_remained = self.limit - round(self.get_today_stats(), 2)
         if rate != 1.0:
             cash_remained = round(cash_remained / rate, 2)
 
@@ -71,7 +71,8 @@ class CashCalculator(Calculator):
         elif round(self.get_today_stats(), 2) == self.limit:
             return 'Денег нет, держись'
         else:
-            debt = abs(round((self.get_today_stats() - self.limit) / rate, 2))
+            debt = abs(round((self.get_today_stats(), 2) - self.limit)
+                            / round(rate, 2))
             return f'Денег нет, держись: твой долг - {debt} {cur_name}'
 
 
