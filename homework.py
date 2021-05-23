@@ -89,7 +89,3 @@ cash_calculator.add_record(Record(amount=3000,
 print(cash_calculator.get_today_cash_remained('rub'))
 # должно напечататься
 # На сегодня осталось 555 руб
-caloriescalculator = CaloriesCalculator(1000)
-caloriescalculator.add_record(Record(amount=900,
-            comment='Кусок тортика. И ещё один.',))
-print(caloriescalculator.get_calories_remained())
