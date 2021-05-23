@@ -35,7 +35,6 @@ class Calculator:
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self, limit):
-        self.limit = limit
         calories_limit = self.get_today_stats()
         if calories_limit <= limit:
             over_limit = limit - calories_limit
@@ -54,25 +53,25 @@ class CashCalculator(Calculator):
         money_type = ''
         if currency.lower() == 'rub':
             money_type = 'руб'
-            cash_remained = round(self.limit - self.get_today_stats())
-            debt = abs(round(self.get_today_stats() - self.limit))
+            cash_remained = round(self.limit - self.get_today_stats(), 2)
+            debt = abs(round(self.get_today_stats() - self.limit), 2)
         elif currency.lower() == 'usd':
             money_type = 'USD'
-            cash_remained = round((self.limit - self.get_today_stats())
-                                  / self.USD_RATE, 1)
+            cash_remained = round((self.limit - self.get_today_stats(), 2)
+                                  / self.USD_RATE, 2)
             debt = abs(round((self.get_today_stats() - self.limit)
-                             / self.USD_RATE, 2))
+                             / self.USD_RATE), 2)
         elif currency.lower() == 'eur':
             money_type = 'Euro'
             cash_remained = round((self.limit - self.get_today_stats())
-                                  / self.EURO_RATE, 1)
+                                  / self.EURO_RATE, 2)
             debt = abs(round((self.get_today_stats() - self.limit)
                              / self.EURO_RATE, 2))
         if self.get_today_stats() == 0:
             return 'Денег нет, держись'
-        if self.get_today_stats() < round(self.limit):
+        if self.get_today_stats() < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
-        elif self.get_today_stats() == round(self.limit):
+        elif self.get_today_stats() == self.limit:
             return 'Денег нет, держись'
         else:
             return f'Денег нет, держись: твой долг - {debt} {money_type}'
