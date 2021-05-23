@@ -67,11 +67,11 @@ class CashCalculator(Calculator):
                                   / self.EURO_RATE, 2)
             debt = abs(round((self.get_today_stats() - self.limit)
                              / self.EURO_RATE, 2))
-        if self.get_today_stats() == 0:
+        if round(self.get_today_stats(), 2) == 0:
             return 'Денег нет, держись'
-        if self.get_today_stats() < self.limit:
+        if round(self.get_today_stats(), 2) < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
-        elif self.get_today_stats() == self.limit:
+        elif round(self.get_today_stats(), 2) == self.limit:
             return 'Денег нет, держись'
         else:
             return f'Денег нет, держись: твой долг - {debt} {money_type}'
