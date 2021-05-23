@@ -38,7 +38,7 @@ class CaloriesCalculator(Calculator):
         calories_limit = self.get_today_stats()
         if calories_limit <= limit:
             over_limit = limit - calories_limit
-            return f'Сегодня можно съесть что-нибудь ещё, \
+            return f'Сегодня можно съесть что-нибудь ещё,\
                 но с общей калорийностью не более {over_limit} кКал'
         else:
             return 'Хватит есть!'
@@ -53,25 +53,25 @@ class CashCalculator(Calculator):
         money_type = ''
         if currency.lower() == 'rub':
             money_type = 'руб'
-            cash_remained = round(self.limit - self.get_today_stats(), 2)
-            debt = abs(round(self.get_today_stats() - self.limit), 2)
+            cash_remained = round(self.limit - self.get_today_stats())
+            debt = abs(round(self.get_today_stats() - self.limit))
         elif currency.lower() == 'usd':
             money_type = 'USD'
-            cash_remained = round((self.limit - self.get_today_stats(), 2)
-                                  / self.USD_RATE, 2)
+            cash_remained = round((self.limit - self.get_today_stats())
+                                  / self.USD_RATE)
             debt = abs(round((self.get_today_stats() - self.limit)
-                             / self.USD_RATE), 2)
+                             / self.USD_RATE))
         elif currency.lower() == 'eur':
             money_type = 'Euro'
             cash_remained = round((self.limit - self.get_today_stats())
-                                  / self.EURO_RATE, 2)
+                                  / self.EURO_RATE)
             debt = abs(round((self.get_today_stats() - self.limit)
-                             / self.EURO_RATE, 2))
-        if round(self.get_today_stats(), 2) == 0:
+                             / self.EURO_RATE))
+        if self.get_today_stats() == 0:
             return 'Денег нет, держись'
-        if round(self.get_today_stats(), 2) < self.limit:
+        if self.get_today_stats() < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
-        elif round(self.get_today_stats(), 2) == self.limit:
+        elif self.get_today_stats() == self.limit:
             return 'Денег нет, держись'
         else:
             return f'Денег нет, держись: твой долг - {debt} {money_type}'
@@ -92,3 +92,8 @@ cash_calculator.add_record(Record(amount=3000,
 print(cash_calculator.get_today_cash_remained('rub'))
 # должно напечататься
 # На сегодня осталось 555 руб
+caloriescalculator = CaloriesCalculator(1000)
+caloriescalculator.add_record(Record(amount=1186,
+            comment='Кусок тортика. И ещё один.',
+            date='24.02.2019'))
+print(caloriescalculator.get_calories_remained(2000))
