@@ -41,44 +41,37 @@ class CaloriesCalculator(Calculator):
         calories_limit = self.get_today_stats()
         if calories_limit <= self.limit:
             over_limit = self.limit - calories_limit
-            return f'Сегодня можно съесть что-нибудь ещё,\
-                но с общей калорийностью не более {over_limit} кКал'
+            return 'Сегодня можно съесть что-нибудь ещё, ' + \
+            f'но с общей калорийностью не более {over_limit} кКал'
         else:
             return 'Хватит есть!'
 
 
 class CashCalculator(Calculator):
-    EURO_RATE = 89.67
     USD_RATE = 73.99
-    EXCHANGE_RATE = {
-        'rub': 1,
-        'usd': 73.99,
-        'eur': 89.67,
-    }
-
-    CURRENCY_NAME = {
-        'rub': 'руб',
-        'usd': 'USD',
-        'eur': 'Euro',
-    }
+    EURO_RATE = 89.67
 
     def get_today_cash_remained(self, currency):
-        cur = currency.lower()
-        cur_name = CashCalculator.CURRENCY_NAME[cur]
-        rate = CashCalculator.EXCHANGE_RATE[cur]
-
-        cash_remained = round(self.limit - self.get_today_stats(), 2)
-        if rate != 1.0:
-            cash_remained = round(cash_remained / rate, 2)
-
-        if round(self.get_today_stats(), 2) < self.limit:
-            return f'На сегодня осталось {cash_remained} {cur_name}'
-        elif round(self.get_today_stats(), 2) == self.limit:
+        self.currency = currency
+        money_type = ''
+        if currency.lower() == 'rub':
+            money_type = 'руб'
+            cash_remained = self.limit - self.get_today_stats()
+            debt = self.get_today_stats() - self.limit
+        elif currency.lower() == 'usd':
+            money_type = 'USD'
+            cash_remained = round((self.limit - self.get_today_stats())/self.USD_RATE, 2)
+            debt = abs(round((self.get_today_stats() - self.limit)/self.USD_RATE, 2))
+        elif currency.lower() == 'eur':
+            money_type = 'Euro'
+            cash_remained = round((self.limit - self.get_today_stats())/self.EURO_RATE, 2)
+            debt = abs(round((self.get_today_stats() - self.limit)/self.EURO_RATE, 2))
+        if self.get_today_stats() < self.limit:
+            return f'На сегодня осталось {cash_remained} {money_type}'
+        elif self.get_today_stats() == self.limit:
             return 'Денег нет, держись'
         else:
-            debt = abs(round((self.get_today_stats(), 2)) - self.limit
-                            / abs(round(rate, 2)))
-            return f'Денег нет, держись: твой долг - {debt} {cur_name}'
+            return f'Денег нет, держись: твой долг - {debt} {money_type}'
 
 
 # создадим калькулятор денег с дневным лимитом 1000
