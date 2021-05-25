@@ -42,7 +42,7 @@ class CaloriesCalculator(Calculator):
         if calories_limit <= self.limit:
             over_limit = self.limit - calories_limit
             return 'Сегодня можно съесть что-нибудь ещё, ' + \
-            f'но с общей калорийностью не более {over_limit} кКал'
+                   f'но с общей калорийностью не более {over_limit} кКал'
         else:
             return 'Хватит есть!'
 
@@ -62,7 +62,7 @@ class CashCalculator(Calculator):
             money_type = 'USD'
             cash_remained = round((self.limit - self.get_today_stats())
                                   / self.USD_RATE, 2)
-            debt = abs(round((self.get_today_stats() - self.limit) 
+            debt = abs(round((self.get_today_stats() - self.limit)
                              / self.USD_RATE, 2))
         elif currency.lower() == 'eur':
             money_type = 'Euro'
@@ -93,5 +93,4 @@ cash_calculator.add_record(Record(amount=3000,
 print(cash_calculator.get_today_cash_remained('rub'))
 # должно напечататься
 # На сегодня осталось 555 руб
-
 
