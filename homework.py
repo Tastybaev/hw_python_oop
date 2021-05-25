@@ -60,12 +60,16 @@ class CashCalculator(Calculator):
             debt = self.get_today_stats() - self.limit
         elif currency.lower() == 'usd':
             money_type = 'USD'
-            cash_remained = round((self.limit - self.get_today_stats())/self.USD_RATE, 2)
-            debt = abs(round((self.get_today_stats() - self.limit)/self.USD_RATE, 2))
+            cash_remained = round((self.limit - self.get_today_stats())
+                                  / self.USD_RATE, 2)
+            debt = abs(round((self.get_today_stats() - self.limit) 
+                             / self.USD_RATE, 2))
         elif currency.lower() == 'eur':
             money_type = 'Euro'
-            cash_remained = round((self.limit - self.get_today_stats())/self.EURO_RATE, 2)
-            debt = abs(round((self.get_today_stats() - self.limit)/self.EURO_RATE, 2))
+            cash_remained = round((self.limit - self.get_today_stats())
+                                  / self.EURO_RATE, 2)
+            debt = abs(round((self.get_today_stats() - self.limit)
+                             / self.EURO_RATE, 2))
         if self.get_today_stats() < self.limit:
             return f'На сегодня осталось {cash_remained} {money_type}'
         elif self.get_today_stats() == self.limit:
@@ -89,3 +93,5 @@ cash_calculator.add_record(Record(amount=3000,
 print(cash_calculator.get_today_cash_remained('rub'))
 # должно напечататься
 # На сегодня осталось 555 руб
+
+
