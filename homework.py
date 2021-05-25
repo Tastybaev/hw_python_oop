@@ -93,4 +93,3 @@ cash_calculator.add_record(Record(amount=3000,
 print(cash_calculator.get_today_cash_remained('rub'))
 # должно напечататься
 # На сегодня осталось 555 руб
-
