@@ -42,7 +42,7 @@ class CaloriesCalculator(Calculator):
         if calories_limit <= self.limit:
             over_limit = self.get_balance()
             return ''.join(['Сегодня можно съесть что-нибудь ещё, ',
-                   f'но с общей калорийностью не более {over_limit} кКал'])
+                           f'но с общей калорийностью не более {over_limit} кКал'])
         return 'Хватит есть!'
 
 
@@ -54,7 +54,7 @@ class CashCalculator(Calculator):
     def get_today_cash_remained(self, currency):
         currency_info = {
             'rub': (self.RUB_RATE, 'руб',),
-            'usd' : (self.USD_RATE, 'USD'),
+            'usd': (self.USD_RATE, 'USD'),
             'eur': (self.EURO_RATE, 'Euro')
         }
 
