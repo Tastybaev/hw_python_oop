@@ -43,7 +43,7 @@ class CaloriesCalculator(Calculator):
             over_limit = self.get_balance()
             return ''.join(['Сегодня можно съесть что-нибудь ещё, ',
                            f'но с общей калорийностью не более {over_limit}'
-                           ' кКал'])
+                            ' кКал'])
         return 'Хватит есть!'
 
 
