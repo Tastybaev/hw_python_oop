@@ -28,7 +28,7 @@ class Calculator:
 
     def get_week_stats(self):
         today = dt.date.today()
-        week_ago = today - dt.timedelta(days=7)
+        week_ago = today - dt.timedelta(days=6)
         return sum(i.amount for i in self.records
                    if today >= i.date >= week_ago)
 
@@ -38,12 +38,10 @@ class Calculator:
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self):
-        calories_limit = self.get_today_stats()
-        if calories_limit <= self.limit:
-            over_limit = self.get_balance()
-            return ''.join(['Сегодня можно съесть что-нибудь ещё, ',
-                           f'но с общей калорийностью не более {over_limit}'
-                            ' кКал'])
+        calories_limit = self.get_balance()
+        if calories_limit > 0:
+            return ('Сегодня можно съесть что-нибудь ещё, но с общей '
+         f'калорийностью не более {calories_limit} кКал')
         return 'Хватит есть!'
 
 
