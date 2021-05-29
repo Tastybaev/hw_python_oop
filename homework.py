@@ -41,7 +41,7 @@ class CaloriesCalculator(Calculator):
         calories_limit = self.get_balance()
         if calories_limit > 0:
             return ('Сегодня можно съесть что-нибудь ещё, но с общей '
-         f'калорийностью не более {calories_limit} кКал')
+                    f'калорийностью не более {calories_limit} кКал')
         return 'Хватит есть!'
 
 
