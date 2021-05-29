@@ -28,9 +28,10 @@ class Calculator:
 
     def get_week_stats(self):
         today = dt.date.today()
-        week_ago = today - dt.timedelta(days=6)
+        tomorrow = today + dt.timedelta(days=1)
+        week_ago = today - dt.timedelta(days=7)
         return sum(i.amount for i in self.records
-                   if today >= i.date >= week_ago)
+                   if tomorrow > i.date >= week_ago)
 
     def get_balance(self):
         return self.limit - self.get_today_stats()
